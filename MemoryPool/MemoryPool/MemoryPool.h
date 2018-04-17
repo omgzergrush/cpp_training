@@ -4,16 +4,12 @@
 
 class mem_pool_singleton
 {
-protected:
-    ~mem_pool_singleton() = default;
 public:
-
     static mem_pool_singleton& instance();
 
     virtual void* allocate(size_t size) = 0;
     virtual void deallocate(void* chunk) = 0;
 private:
-
     class mem_pool;
 };
 
@@ -33,7 +29,7 @@ private:
 
 inline mem_pool_singleton & mem_pool_singleton::instance()
 {
-    static mem_pool_singleton::mem_pool instance;
+    static mem_pool instance;
     return instance;
 }
 

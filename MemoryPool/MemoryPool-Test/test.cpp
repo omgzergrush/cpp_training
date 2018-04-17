@@ -11,52 +11,52 @@ TEST(TestRingBuffer2, SimpleTest) {
 }
 
 TEST(TestIntStore, SimpleTest) {
-    store_int mybuffer;
+    store_int test_store;
 
-    mybuffer.store(1);
+    test_store.store(1);
 
-    EXPECT_EQ(1, mybuffer.get());
+    EXPECT_EQ(1, test_store.get());
 }
 
 TEST(TestIntStore, CopyTest) {
-    store_int mybuffer;
-    mybuffer.store(1);
+    store_int test_store;
+    test_store.store(1);
 
-    auto another_buffer = mybuffer;
+    auto another_buffer = test_store;
 
     EXPECT_EQ(1, another_buffer.get());
-    EXPECT_EQ(1, mybuffer.get());
+    EXPECT_EQ(1, test_store.get());
 }
 
 TEST(TestIntStore, MoveTest) {
-    store_int mybuffer;
-    mybuffer.store(1);
+    store_int test_store;
+    test_store.store(1);
 
-    auto another_buffer = std::move(mybuffer);
+    auto another_buffer = std::move(test_store);
 
     EXPECT_EQ(1, another_buffer.get());
 }
 
 TEST(TestIntStore, SwapTest) {
-    store_int mybuffer;
-    mybuffer.store(1);
+    store_int test_store;
+    test_store.store(1);
 
-    store_int another_buffer;
-    another_buffer.store(2);
+    store_int another_store;
+    another_store.store(2);
 
     using std::swap;
-    swap(mybuffer, another_buffer);
+    swap(test_store, another_store);
 
-    EXPECT_EQ(1, another_buffer.get());
-    EXPECT_EQ(2, mybuffer.get());
+    EXPECT_EQ(1, another_store.get());
+    EXPECT_EQ(2, test_store.get());
 }
 
 TEST(TestIntStore, AssignTest) {
-    store_int mybuffer;
-    mybuffer.store(1);
+    store_int test_store;
+    test_store.store(1);
 
     store_int another_buffer;
-    another_buffer = mybuffer;
+    another_buffer = test_store;
 
     EXPECT_EQ(1, another_buffer.get());
 }
@@ -69,4 +69,20 @@ TEST(TestIntStore, NewTest) {
     EXPECT_EQ(1, pstore->get());
 
     pstore->~store_int();
+}
+
+
+TEST(TestIntStore, MoreNewTests) {
+    store_int* pstore = new store_int();
+    store_int* pstore2 = new store_int();
+
+    pstore->store(1);
+    pstore2->store(99);
+
+
+    EXPECT_EQ(1, pstore->get());
+    EXPECT_EQ(99, pstore2->get());
+
+    pstore->~store_int();
+    pstore2->~store_int();
 }
