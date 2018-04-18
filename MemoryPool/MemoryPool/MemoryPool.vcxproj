@@ -150,14 +150,12 @@
   <ItemGroup>
     <ClInclude Include="store_int.h" />
     <ClInclude Include="MemoryPool.h" />
-    <ClInclude Include="RingBuffer2.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="store_int.cpp" />
     <ClCompile Include="MemoryPool.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="RingBuffer2.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

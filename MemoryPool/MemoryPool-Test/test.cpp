@@ -1,14 +1,5 @@
 #include "pch.h"
-#include "RingBuffer2.h"
 #include "store_int.h"
-
-TEST(TestRingBuffer2, SimpleTest) {
-    RingBuffer mybuffer;
-
-    mybuffer.push(1);
-
-    EXPECT_EQ(1, mybuffer.peek());
-}
 
 TEST(TestIntStore, SimpleTest) {
     store_int test_store;
